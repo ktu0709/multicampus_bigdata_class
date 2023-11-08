@@ -20,4 +20,8 @@ fruits.update({'banana':1.5}) #5.'banana'의 가격을 1.5로 업데이트 코�
 print(fruits)
 
 
-
+fruits01={'apple': 2.5, 'banana': 1.2, 'orange': 1.0, 'grape': 3.0}
+fruits02 = {'apple': 2.5, 'banana': 1.2, 'orange': {'A':40}, 'grape': 3.0, 'grape00':{'A':40,'b':50} , 'grape01':{'AA':{'a':50,'b':60} } }
+print(fruits02['grape00'].get('A')) #40
+print(fruits02['grape01'].get('AA').get('a')) #50
+print(fruits02) #{'apple': 2.5, 'banana': 1.2, 'orange': {'A': 40}, 'grape': 3.0, 'grape00': {'A': 40, 'b': 50}, 'grape01': {'AA': {'a': 50, 'b': 60}}}
