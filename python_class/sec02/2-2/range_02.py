@@ -1,0 +1,8 @@
+#range(start,stop-1,step size)
+range(10)
+r=list(range(10))  
+r1= list(range(2,8))
+r2= list(range(2,20,3))
+print (r)
+print (r1)
+print (r2)
