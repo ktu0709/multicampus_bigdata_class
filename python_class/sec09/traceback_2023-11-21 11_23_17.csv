@@ -1,0 +1,11 @@
+2023-11-21 11_23_17,"Traceback (most recent call last):
+  File ""D:\multicampus\python_pjt\sec09\f_Exception.py"", line 13, in <module>
+    f1(1.0, 0.0)
+  File ""D:\multicampus\python_pjt\sec09\f_Exception.py"", line 6, in f1
+    return f2(a) + f2(b)
+                   ^^^^^
+  File ""D:\multicampus\python_pjt\sec09\f_Exception.py"", line 9, in f2
+    return 1.0 / x
+           ~~~~^~~
+ZeroDivisionError: float division by zero
+"
