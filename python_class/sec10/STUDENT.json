@@ -1,0 +1,8 @@
+{"STUDENT" :[
+  {"NAME" :"Dominica","SCORE" : {"KOR":10,"ENG":20,"MATH":30}},
+  {"NAME" :"Dominico","SCORE" :{"KOR": 90,"ENG":40, "MATH":100}},
+  {"NAME" :"RuRe", "SCORE" :{"KOR": 90,"ENG":90, "MATH":90}}
+  ]
+}
+
+
