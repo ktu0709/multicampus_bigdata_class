@@ -134,4 +134,6 @@ select *
 from information_schema.table_constraints
 where table_name = 'students07';
 
+select * from students07
+
 rollback;
