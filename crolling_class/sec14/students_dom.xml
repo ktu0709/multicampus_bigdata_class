@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<STUDENT>
+  <student>
+    <NAME>Dominica</NAME>
+    <SCORE>
+      <KOR>10</KOR>
+      <ENG>20</ENG>
+      <MATH>30</MATH>
+    </SCORE>
+  </student>
+  <student>
+    <NAME>Dominico</NAME>
+    <SCORE>
+      <KOR>90</KOR>
+      <ENG>40</ENG>
+      <MATH>100</MATH>
+    </SCORE>
+  </student>
+  <student>
+    <NAME>RuRe</NAME>
+    <SCORE>
+      <KOR>90</KOR>
+      <ENG>90</ENG>
+      <MATH>90</MATH>
+    </SCORE>
+  </student>
+</STUDENT>
