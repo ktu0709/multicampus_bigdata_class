@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Scores</title>
+</head>
+
+<body>
+    <h1>Student Scores</h1>
+    <form id="scoreForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+
+        <label for="kor">Korean:</label>
+        <input type="number" id="kor" required>
+
+        <label for="eng">English:</label>
+        <input type="number" id="eng" required>
+
+        <label for="mat">Math:</label>
+        <input type="number" id="mat" required>
+
+        <button type="submit">Calculate Score</button>
+    </form>
+
+    <div id="scoreContainer"> </div>
+
+    <script src="js06_object.js"></script>
+</body>
+
+</html>

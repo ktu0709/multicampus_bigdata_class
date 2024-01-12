@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>  선택문 연습 </h1>
+    <label for ="f_input">Enter a fruit:</label> 
+    <input type ="text" id ="f_input">  <br> <br><br>
+     <label for="f_select">Select a fruit:</label>
+     <select  id="f_select" >
+     <option value="">  ----Select Fruit---  </option>
+     <option value="apple" > Apple</option>
+     <option value="banana">Banana</option>
+     <option value="orange">Orange</option>
+     </select>
+
+
+     <button id="checkButton">Check</button>
+    <p id="result"></p>
+
+
+    <script >
+         $(document).ready(function() {
+            $('#checkButton').click(function() {
+            var fruit = $('#f_select').val();
+            var message; //p의 textContent에다 표시할 변수
+    switch(fruit){
+        case "apple": message="Selected fruit is apple.";
+                      break;
+        case "banana": message="Selected fruit is banana.";
+                      break;
+        case "orange": message="Selected fruit is orange.";
+                      break;
+        default: message="Selected fruit is not apple.,,,,";
+                      break;
+           }
+myp = document.getElementById("result");
+console.log(typeof myp);
+myp.textContent =  message;
+myp.style.fontSize = "1.5em";
+$('#result').text(message).css("fontSize","1.5em");
+            });
+        });
+
+
+    </script>
+</body>
+</html>

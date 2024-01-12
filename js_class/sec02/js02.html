@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style >
+        .note {
+            border: 1px solid;
+            min-height: 300px;
+        } 
+    </style>  
+    <script>
+        // $ 함수정의 표현식  -> 문서가 로드하자마자 자동으로 호출되면서 메모리로드  
+        let $ = function (cssSelector, message) {
+
+            //cssSelector 선택자를 이용해서 html 요소들을 선택해서   htmlElements 저장 
+            let htmlElements = document.querySelectorAll(cssSelector);
+
+            //만일에 message가 있다면
+            if (message) {
+                // 선택된 모든 요소들에 대해 forEach로 반복을 하겠다. 
+                // 각 요소의 innerHTML에 message를 추가하고 줄바꿈을 하겠다.  
+                htmlElements.forEach(e => { e.innerHTML += message + '<br>' });
+            }
+            //htmlElements배열을 리턴하겠다 
+            return htmlElements;
+        }
+    </script> 
+</head>
+<body>
+    <div class="note" id="lambda">  </div>
+    <div class="note" id="lambda01"> </div>
+    <div class="note" id="lambda02"> </div>  
+
+   <script>
+    let fruitsArr = ['사과', '딸기', '바나나', '수박', '복숭아'];
+    lambda.innerHTML += `----------------------------<br>`;
+    fruitsArr.forEach(e => { lambda.innerHTML += `${e}<br>`; })
+       fruitsArr.forEach(e => { lambda.innerHTML += `<span style="color:red;">${e}</span>`; })
+
+   </script>
+
+</body>
+</html>

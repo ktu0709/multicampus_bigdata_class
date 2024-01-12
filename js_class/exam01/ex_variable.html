@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+     .note{
+        width: 50%;
+        min-height: 100px;
+        background-color: lightgreen;
+        border: 1px sol black;
+     }
+
+    </style>
+</head>
+<body>
+    <pre>
+           var 변수명    ---> 전역  es6 이전  : 함수레벨 스코프 
+           let 변수명    ---> 지역  es6 이후  : 블럭 레벨 스코프
+           const 변수명  ---->상수  es6 이후   : 블럭 레벨 스코프
+           스코프 scope : 메모리에 변수가 올라가고 내려오는 기준 또는 범위 
+    </pre>
+    <script >
+
+       function  myTest(){
+           
+             if(true) {
+                var v1 = 'if 안에 선언한 var';
+                let  l1 ='if 안에 선언한 let';
+                const c1 = 'if 안에 선언한 const';
+
+             }
+            console.dir(v1);
+            //console.log(l1);
+           // console.log(c1);
+       }
+    myTest();
+    </script>
+    <pre>
+      window(전역객체) : 자바스크립트에서 사용하는 변수, 함수, 객체 속성등 
+                        프로그램에서 제공해주는 전역객체 
+         -   tip:  전역객체는  브라우저가 종료될때 까지 메모리에서 소거되지 않는 객체  
+       
+         -  전역에서 var로 선언한 변수는 전역객체인 window 속성으로 등록이 된다.  
+         -  let, const 로 선언한 변수는 전역객체인 window 속성으로 등록되지 않는다.   
+
+    </pre>
+    <script>
+        var v1 = '전역객체 안에 선언한 var';
+        let l1 = '전역객체 안에 선언한 let';
+        const c1 = '전역객체 안에 선언한 const';         
+       console.dir(window)
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

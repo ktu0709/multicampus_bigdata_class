@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>if_Test</title>     
+</head>
+<body>
+    <h1> if_Test</h1>
+    <label for="numberType">숫자를 입력하세요 :</label>
+    <input type="number" id="numberType">
+    <button onclick="res()">확인</button>
+    <p id="result"></p>
+    <script>
+        function res(){
+        var c = document.getElementById("numberType").value;
+        var resultText = "";
+        if(c>0){
+                resultText = c+"는 양수야";
+                }
+        else if(c<0) {
+                    resultText = c+"는 음수야";
+                    }
+        else{
+                resultText = c+"는 이도저도 아니야";
+        }
+        document.getElementById("result").textContent=resultText;
+
+
+        }
+
+
+    </script>
+</body>
+
+</html>

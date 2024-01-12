@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .note {
+            width: 50%;
+            min-height: 100px;
+            background-color: lightgreen;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <pre>
+       primitive  type  : String , Number, Boolean, Null, Undefined   
+          -> 데이터 복사할때 깊은 복사가 되는 타입
+
+       reference  type : Object
+          -> 데이터 복사할때 얕은 복사가 되는 타입 (주소 대입)
+
+    </pre>
+    <!--  typeNote 요소를 클릭하는 사용자 이벤트 발생시 myTest() 호출      
+
+        js에서 html,css를 접근하는 방법
+       
+        1)html element  객체를 자바스크립트로 변환 
+        2)dom 트리에 접근할 수 있는 객체  ->document
+
+        <div class="note" id="typeNote" onclick="myTest()"></div>
+        #typeNote
+        document.querySelector("#typeNote")
+                width: 50%;
+                min-height: 100px;
+                background-color: lightgreen;
+                border: 1px solid black;
+
+        //*[@id="typeNote"]
+    -->
+    <div class="note" id="typeNote" onclick="myTest()" ></div>
+    <script>
+      function   myTest(){
+          let typeNote= document.querySelector("#typeNote")
+          console.dir(typeNote);
+          console.log(typeNote);
+
+          typeNote.innerHTML='';
+          typeNote.innerHTML+= '<b> name :  </b>' +typeof(typeNote) +'<br>'; 
+          typeNote.innerHTML += '<b> name : 홍길동 </b><br>'; 
+          typeNote.innerHTML += '<b> addr : 서울 </b><br>'; 
+
+      }
+    </script>
+    
+<div class="note" id="AA" onclick="myTestAA()"></div>
+<div class="note" id="BB" onclick="myTestBB()"></div>
+<div class="note" id="CC" onclick="myTestCC()"></div>
+<script>
+    function myTestCC() {
+        let CC = document.querySelector("#CC");
+        CC.innerHTML = '<b> CC 영역 </b><br>';
+        let  a =5;
+        let  b=10;
+        //let  result  = "The sum of "+  a + " and "  + b + " is "  + (a+b);
+         // ECMAScript 2015(ES6)  -> 템플릿 리터럴[template literals]  ->   최신 브라우저 +  Node.js  
+        
+         let result = `The sum of ${a} and ${b}  is  ${a + b}`; 
+
+        console.log(result);
+
+        let  myname="홍길동";
+        let  greeting =`Hello ,  ${myname} `;
+        console.log(greeting);
+    }
+</script>
+
+
+<script>
+    function  myTestAA(){
+        let AA = document.querySelector("#AA");
+        AA.innerHTML  =  '<b> AA 영역 </b><br>'; 
+
+    }
+</script>
+
+<pre>
+querySelector  : Css 스타일 기반요소를 선택하는 함수   -> 첫번째 요소 
+                 ex) document.querySelector("#BB");   id = BB
+                     document.querySelector(".note");  class  ='note'
+
+getElementById  : id만 선택하는 함수 
+            ex) document.getElementById("BB"); id = BB
+</pre>
+<script>
+    function myTestBB() {
+        let BB = document.querySelector("#BB");
+        BB.innerHTML = '<b> BB 영역 </b><br>'; 
+
+        let BB_id = document.getElementById("BB");
+        console.log(BB);
+        console.log(BB_id);
+        }
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

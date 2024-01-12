@@ -1,0 +1,140 @@
+1. 함수선언 하는 방법 
+
+function myname(parameter1, parameter2 ){
+ //   명령구문  fuction body 
+ //   statements 
+ //   return statements  (optional) 
+
+}
+
+(parameter1, parameter2 )  => {
+ //   명령구문  fuction body 
+ //   statements 
+ //   return statements  (optional) 
+
+}
+
+2. 함수를 lambda 형식으로 변환 
+function add(a,b) {
+    return a+b; 
+}
+const add =(a,b) =>a+b;
+
+3. lambda  -> 함수원형 ()안에 매개인자에 따른 선언
+
+3-1:  no parameters    =>  function 
+const sayHello=()=>{
+    console.log("hello");
+}
+
+function sayHello(){
+    console.log("hello");
+}
+
+
+3-2: one parameter
+const square =(num)=>{
+     return num*num;
+}
+
+function square(num){
+    return num*num;
+}
+
+3-3. multiple parameters
+const sum=(a,b) =>{
+    return a+b;
+}
+function sum (a,b){
+    return a+b;
+}
+
+3-4. single expressions in the body
+const multiplyByTwo =(num)=> num*2 ;
+
+function multiplyByTwo(num){
+    return num*2;
+}
+
+///////////////////////////////////////////
+
+
+
+
+///////////////////////////////////////////
+js02.html  
+  1. 함수,람다식 를 통해서 css ,html 요소를 제어  
+  2. document.querySelectorAll(abc)   =======> css의 여러가지 스타일을 한꺼번에  
+  3. forEach = 배열의 요소를 반복하는 문을 이용해서 객체를 단촐하게 명명한다.  
+  4. innerHTML 를 사용해서 태그를 생성한다. 
+
+const ar =[1,2,3,4,5];
+ar.forEach( (su) =>  { 
+    console.log(su); 
+});
+
+for(let i=0  ;i < ar.length ;i++){
+    console.log(ar[i]); 
+}
+
+////////////////////////////////////////////////
+class UserName{
+    멤버변수
+    constructor(){}
+    멤버함수 
+}
+
+1.class라는 선언해서 사용자 자료형을 선언하게 되면 
+  Object라는 클래스의 후손이 된다. 
+
+2. 생성자  
+ 2-1. constructor(){}로 선언한다.  
+ 2-2. overload를 자체적으로 파라미터의 기본값을 전달 받아 실행한다. 
+      constructor(my_name="noname", kor=50, eng=50, mat=50) {}
+ 2-3 생성자의 목적은 멤버변수 초기화  
+ 2-4. new 생성자를가진 class명() -> 내부적으로 생성자 호출된다. 
+      ===========> 객체 생성시 자동호출된다.  
+ 2-5. 생성자를 명시하지 않으면 constructor(){}  디폴트생성자를 
+      제공해서 객체를 생성하고 
+      생성자를 명시하면 명시된 생성자가 호출된다.  
+    ex) class Test{}   -> new Test() ; ->  constructor(){} 
+       class YTest{
+        constructor(a){}   -> new YTest() ->  constructor(a)
+       }
+2-6.  this :   현재 오브젝트를 지칭하는 연산자.  
+
+2-7. instanceof  -> 객체가 생성된 것을 확인  
+    ex)String 객체의 생성자로 확인  
+
+3. 접근제한자  : #을 지정하면 private  , static  ->정적 멤버  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
