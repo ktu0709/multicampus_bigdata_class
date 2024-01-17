@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function showMessage(){
+        alert.
+        }
+    </script>
+</head>
+<body>
+{% if user.is_authenticated %}
+<p> 안녕하세요 {{user.username}}</p>
+{% else %}
+<p> 오류입니다</p>
+{% endif %}
+
+<button onclick="showMessage()">메세지 보기</button>
+<a href="{% url 'myfor'%}">my_for.html</a>
+</body>
+</html>

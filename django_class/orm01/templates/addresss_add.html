@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>새 주소 추가</h2>
+<form method="post">
+    {% csrf_token %} <!--보안용 -->
+    {{ form.as_p }}
+    <button type="submit">추가</button>
+</form>
+</body>
+</html>
