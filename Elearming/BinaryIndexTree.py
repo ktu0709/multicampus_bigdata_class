@@ -18,7 +18,7 @@ def prefix_sum(i):
 #i번째 수를 dif만큼 더하는 함수
 def update(i,dif):
   while i<= n:
-    tree[i] += diff
+    tree[i] += dif
     i+=(i&-i) 
 #start부터 end까지의 구간 합을 계산하는 함수
 def interval_sum(start,end):
@@ -33,7 +33,7 @@ for i in range(m+k):
     a,b,c = map(int , input().split())
   #업데이트(update) 연산인 경우  
   if a== 1:
-      update(b,c-arr[b]) #바뀐 크기(diff)만큼 적용
+      update(b,c-arr[b]) #바뀐 크기(dif)만큼 적용
       arr[b] = c
   else:
     print(interval_sum(b,c))
