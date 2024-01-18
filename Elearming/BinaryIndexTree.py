@@ -30,7 +30,7 @@ for i in range(1,n+1):
   update(i,x)
 
 for i in range(m+k):
-    a,b,c = map(int , input().split())
+  a,b,c = map(int , input().split())
   #업데이트(update) 연산인 경우  
   if a== 1:
       update(b,c-arr[b]) #바뀐 크기(dif)만큼 적용
