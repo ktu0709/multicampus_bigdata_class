@@ -1,0 +1,46 @@
+https://docs.opencv.org/4.x/dd/d1a/group__imgproc__feature.html#gac1fc3598018010880e370e2f709b4345
+
+<<corner detection 특징>>
+1) 이미지 내에서 "코너" 또는 "관심점"(interest points)이라고 불리는 영역을 찾아내는 알고리즘
+
+2) 코너는 두 개 이상의 선이 교차하는 지점이나, 갑작스럽게 텍스처가 변하는 지점 등에서 나타나며,
+  물체의 형태를 파악하거나 매칭, 트래킹 등에 사용한다.
+
+3) 스케일과 회전의 변화에 불변하는 성질을 가지기 때문에 다양한 상황에서 물체를 인식하는 데 유용하다.
+
+4) 코너 점은 이미지 내에서 상대적으로 적은 수의 픽셀로 구성되므로, 처리해야 할 데이터 양이 줄어든다.
+
+
+<<주요  corner detection 알고리즘>>
+Sobel 연산 ,  3*3 / 미분필터 중 하나   -> 경계, 그라디언트
+cornerEigenValsAndVecs()
+
+ 1)Harris Corner Detection  :
+ dst = cv2.cornerHarris(gray, blockSize_이웃한 픽셀의 크기 , ksize _ 소벨연산자 커널, k = 해리스방정식에 사용되는 상수 )
+  창의 이미지 전체를 이동시킬 때의 변화량을 측정하여 코너를 찾는 방법으로 회전에는 불변이지만, 크기와 밝기에는 민감할 수 있다.
+    [회색이미지-> x,y이미지 방향의 그라디언트  ->  2*2 행렬M  을 구한다.  -> M과 고유값λ1,λ2 (을 임계값 비교 후  계산된 결과 리턴 ]
+ㅏ
+      # λ₁과 λ₂는 그래디언트의 고유값 : 특정 지점 주변의 그래디언트가 얼마나 빠르게 변하는지를 나타내며, 이를 통해 코너와 에지를 구분
+    - 만약 λ₁과 λ₂ 둘 다 크다면, 그 지점은 코너(corner)
+    - λ₁ 또는 λ₂ 중 하나만 크다면, 그 지점은 에지(edge)
+    - 둘 다 작다면, 그 지점은 플랫한 영역(flat region)  -> 주변 픽셀이미지가 변하지 않는 영역
+
+   * 사진에서 하늘, 바다, 벽, 바닥등 -> flat region
+
+    * cornerEigenValsAndVecs(공분산 행렬의 고유값 계산: λ₁과 λ₂ )는 Harris 코너 탐지 알고리즘에서 필요한 중간 계산을 제공하며,
+                        cornerHarris는 이러한 정보를 사용하여 코너를 실제로 탐지한다.
+
+
+ 2)Shi-Tomasi Corner Detection : cv2.goodFeaturesToTrack(image, maxCorners, qualityLevel, minDistance)
+     Harris 방법을 개선한 방식으로 더욱 정확하고 견고한 코너를 검출한다.
+   #maxCorners 파람값으로 튜닝 주의요망
+   [ 이미지  -> 그래디언트 계산  -> 각픽셀에서 M의 행렬  ->M행렬의 고유값  ->  min(λ₁, λ₂) 가 임계값 보다 큰 지정을 코너로 선택]
+   goodFeaturesToTrackWithQuality ()   -> ver 4.5.3 추가
+
+ 3)FAST(Features from Accelerated Segment Test) : fast = cv2.FastFeatureDetector_create(threshold)
+                                                   keypoints = fast.detect(image)
+  코너 검출 알고리즘입을 빠르게 적용하며 실시간 어플리케이션에 적합하다.  기계학습사용시에 사용한다.
+
+
+
+
