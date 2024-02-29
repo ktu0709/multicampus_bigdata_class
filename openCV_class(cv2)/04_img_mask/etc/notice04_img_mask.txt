@@ -1,0 +1,38 @@
+1. Blur (Blurring or Smoothing)
+목적:노이즈 제거,이미지를 부드럽게 만들어 다른 이미지 처리 작업을 쉽게 함
+    물체의 선명한 특징을 감소시켜 객체 인식에 도움을 줌
+특징:선명도가 줄어듦 ,가우시안 블러, 미디언 블러, bilateralFilter 블러 등 다양한 블러링 방법이 있음
+
+2. Edge Detection (Canny, Sobel)
+객체의 경계를 찾음 , 이미지에서 중요한 구조적 정보를 추출, 특징 검출과 매칭에서의 사용
+특징:경계선이 명확해짐,노이즈에 민감할 수 있음 (따라서 블러링을 먼저 적용하는 것이 일반적)
+
+3. Morphology Operations (Erosion, Dilation, etc.)
+목적:노이즈 제거,객체 구조 개선 (구멍 메우기, 갭 연결 등),객체 분리
+특징:구조 요소(Structuring Element)와의 연산을 통해 이미지 형태를 변경
+침식(Erosion)과 팽창(Dilation)은 가장 기본적인 모폴로지 연산
+모폴로지 연산은 노이즈 제거, 객체 구분, 객체 개선 등 다양한 목적으로 사용됨
+
+===================================================================
+cv::MorphTypes {
+  cv::MORPH_ERODE = 0, : 이미지 경계 축소 -> 작은 오브젝트 제거 , 오브젝트의 간격을 늘린다
+  cv::MORPH_DILATE = 1, : 경계 확장 (팽창) -> 침식으로 사라진 오브젝트를 복원하거나 더 크게 만든다.
+  cv::MORPH_OPEN = 2, : 침식 -> 팽창  : 작은 오브젝트 제거
+  cv::MORPH_CLOSE = 3, : 팽창 -> 침식 : 내부의 작은 구멍 채우기
+  cv::MORPH_GRADIENT = 4, : 팽창 - 침식 : 오브젝트 윤곽이 강조
+  cv::MORPH_TOPHAT = 5, : 원본이미지 - MORPH_OPEN : 밝은 오브젝트가 어두운 배경에 있을 때 사용
+  cv::MORPH_BLACKHAT = 6, : MORPH_CLOSE - 원본이미지 : 어두운 오브젝트가 밝은 배경에 있을 때 사용
+  cv::MORPH_HITMISS = 7 :
+}
+
+===================================================================
+
+Note
+The number of iterations is the number of times erosion or dilatation operation will be applied.
+For instance, an opening operation (MORPH_OPEN) with two iterations is equivalent to apply successively
+: erode -> erode -> dilate -> dilate (and not erode -> dilate -> erode -> dilate).
+
+erode -> 이미지의 작은 객체 노이즈 제거
+erode -> 이미지 객체를 더 줄임
+dilate -> 침식으로 줄어든 객체를 다시 확장 시작
+dilate -> 객체가 본래의 크기에 가깝게 되돌림
