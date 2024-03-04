@@ -1,0 +1,50 @@
+<< 이미지 세그멘테이션(segmentation)>>
+ : 이미지를 여러 영역으로 분할하는 프로세스
+1) 특징
+  -세그멘테이션으로 분할된 영역은 의미있는 정보를 포함
+  -각 픽셀에 레이블을 할당
+  - 분석이나 추적 용이
+
+2) 주요 메소드 함수
+-Thresholding(전역 임계값, 적응형 임계값): cv2.threshold(), cv2.adaptiveThreshold()  -> 색상 기반
+-Region-based Segmentation(연결 요소, 윤곽선 검출): cv2.findContours(), cv2.drawContours() -> 특징점 외곽 추출
+-Watershed Algorithm(알고리즘): cv2.watershed()    -> 회색조로 이미지 경계  + 색상정보
+-Meanshift and Camshift: cv2.pyrMeanShiftFiltering(), cv2.CamShift() = 색상분포로 (색상공간+밀도) 객체 추적 하는 알고리즘
+           => 객체 색상이 유사할 경우 , 조명 변화 ,  회전크기 변화  등은 추적이 어렵다.
+-GrabCut: cv2.grabCut()-> 레이블 기반(초기)
+-k-means Clustering: cv2.kmeans() -> 색상 분포를 사용해서 여러부분을 분할
+
+3) Dl
+- U-Net, SegNet 등
+====================================================================
+<< i_segmation.py>>
+1. 이미지 로드 및 전처리: 'apple_all.jpg'라는 이름의 이미지를 로드하고 이를 회색조(grayscale)로 변환
+   임계값을 적용하여 전경과 배경을 구분
+
+2. 노이즈 제거: 형태학적 연산(Morphological Operations)을 사용하여 노이즈를 제거
+
+3. 거리 변환(Distance Transform): 전처리된 이미지에 대해 거리 변환을 적용,
+    각 전경 픽셀에서 가장 가까운 배경 픽셀까지의 거리를 계산
+
+4. 거리 변환 정규화: 거리 변환의 결과를 [0, 255] 범위로 정규화
+
+5. 로컬 최대점 찾기: 정규화된 거리 변환 이미지에서 로컬 최대점 찾은  후에 K-means 클러스터링에 사용
+
+6. K-means 클러스터링을 위한 데이터 준비: 로컬 최대점의 좌표를 가져와 K-means 알고리즘에 적용할 데이터
+
+7. K-means 클러스터링 수행: 로컬 최대점을 클러스터링을 마커로 적용
+
+8. 마커 생성: K-means의 결과로 얻은 클러스터 중심을 마커로 사용하여 새로운 이미지에 적용
+
+9 .워터셰드 알고리즘 적용: 마커와 원본 이미지를 사용하여 워터셰드(Watershed) 알고리즘을 적용 하여
+    이미지를 여러 영역으로 분할하는 데 사용
+
+
+
+
+
+
+
+
+
+
