@@ -1,0 +1,77 @@
+[Object Detection]
+1) 특징 : 실시간 인식 가능, 다양한 알고리즘 지원, 이진 또는 다중 클래스 객체 인식 가능
+-Bounding Box: 탐지된 객체를 둘러싼 사각형 영역
+-Confidence Score: 탐지 정확도를 나타내는 점수  -><<OpenCV에서 함수로 제공되지 않는다.>>
+
+2) 함수
+cv2.CascadeClassifier(): Haar Cascade를 이용한 객체 인식_머신러닝
+cv2.dnn.readNet(): DNN 모듈을 이용한 객체 인식_딥러닝
+
+3) 알고리즘
+Haar Cascades: 실시간 얼굴 인식에 주로 사용됨
+      - lbpcascade: lbp(Local Binary Pattern) 그레이스케일 이미지의 각픽셀에 대해 주변픽셀들과 비교해서
+                                       이진 패턴을 생성
+      - haarcascade  : 명암 대비특징값
+
+      - hogcascades : HOG(histogram of Oriented Gradients)
+                        객체탐지 알고리즘  + SVM  = 그라디언트 히스토그램방향 구조 및모양 추출
+                        단계적 조명변화, 그림자
+
+YOLO (You Only Look Once): 빠르고 정확한 실시간 객체 인식     +(환경설정, 모델)   로드해서 사용
+TLD (Tracking, Learning, and Detection): 객체 추적 및 인식  +(환경설정, 모델)  로드해서 사용
+Mean-Shift: 객체 추적에 사용(현재진행형)
+Optical Flow: 객체 움직임 추정(미래탐지형)
+============================================================================
+[Segmentation] 전경, 배경 분리
+1)특징 : 픽셀 단위의 분류,의미론적 및 인스턴스 분할 가능,
+- Semantic Segmentation: 같은 종류의 픽셀을 같은 레이블로 분류
+- Instance Segmentation: 같은 종류라도 다른 객체를 다르게 분류
+2) 함수
+cv2.watershed(): Watershed 알고리즘을 이용한 이미지 분할
+cv2.grabCut(): GrabCut 알고리즘을 이용한 객체 분할
+cv2.calcOpticalFlowPyrLK(): Optical flow를 추정하기 위한 함수
+
+3) 알고리즘
+U-Net: 의료 이미지 등에서 주로 사용되는 Semantic Segmentation 알고리즘( +)
+Mask R-CNN: Instance Segmentation에 주로 사용(+)
+GrabCut: 객체와 배경을 분리하기 위한 알고리즘
+
+=================================================================================
+ <<머신러닝>>  :  특징추출 수동 , 통계적 증명 ,  예측 수동, 단일 신경망, =>  txt , 2d
+1) 함수
+train(): 머신러닝 모델을 훈련시키는 함수
+predict(): 훈련된 모델로 새 데이터에 대한 예측을 수행
+load(): 저장된 머신러닝 모델을 호출
+save(): 훈련된 머신러닝 모델을 저장
+2)알고리즘   /(지도학습 , 비지도학습)
+cv2.ml.RTrees_create(): 랜덤 포레스트 알고리즘을 구현
+cv2.ml.SVM_create(): 서포트 벡터 머신(SVM)을 구현
+cv2.ml.KNearest_create(): k-최근접 이웃(k-NN) 알고리즘을 구현
+cv2.ml.Boost_create(): 부스팅 알고리즘을 구현
+cv2.ml.EM_create(): Expectation-Maximization을 구현
+cv2.ml.LogisticRegression_create(): 로지스틱 회귀 알고리즘을 구현
+cv2.kmeans()  : k로 생성할 클러스터 수    -> 무게중심값으로  분류
+=========================================================================================
+<<딥러닝>> : 특징 추출 자동  , 통계적 증명 , 예측 자동 (다층 신경망)   => 이미지, 영상 ,(2D,3D)
+1)함수
+cv2.dnn.readNet(): 딥러닝 모델을 호출
+forward(): 모델을 실행하여 결과를 호출
+cv2.dnn.blobFromImage(): 이미지를 4차원 블롭으로 변환
+cv2.dnn.NMSBoxes(): 비최대 억제(Non-Maximum Suppression)를 수행
+
+2)알고리즘
+cv2.dnn.readNetFromTensorflow(): TensorFlow 모델을 호출
+cv2.dnn.readNetFromCaffe(): Caffe 모델을 호출
+cv2.dnn.readNetFromONNX(): ONNX (Open Neural Network Exchange) 모델 호출
+
+==================================================================================
+  < 선형데이터  / 비선형데이터  >
+  선형데이터  : 이미지편집, 컬러보정, 밝기조정, 스케일 회전 등
+  비선형데이터 : 물체인식분류 ,  텍스처분석 , 조명변화 , 색상분포(색상중첩) , 물체 변형 및 왜곡
+               비선형필터링 , 임계값처리, 히스토그램 등
+            < 고급영상처리, 컴퓨터비전, 객체인식, 의료영상분석등 >
+=======================================================
+유클리드 거리(euclideaN distaNCe): 두점사이의 직선거리(연속형,범주형)   _클러스터, 분류, 회귀
+해밍 거리(hammiNg distaNCe) : 두 이진 벡터에서 다른 비트의 수 (이진형, 범주형) _ 텍스트 분류, 에러검출, 암호
+차분 절대값 : 두점에서 각 차원이 절대값 차이의 합  (연속형,범주형)  _시계열분석, 신호처리
+
