@@ -39,7 +39,7 @@ producer = Producer(producer_config)
 
 
 
-user_key = "664c747774656f6e3130384667614e49"
+user_key = "key"
 api_url = "http://openapi.seoul.go.kr:8088/"+user_key+"/json/bikeList/1/999/"
 
 while True:
