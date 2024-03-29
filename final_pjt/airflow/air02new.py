@@ -1,7 +1,7 @@
 import requests
 import pandas as pd
 import json
-from datetime import datetime.timedelta
+from datetime import datetime,timedelta
 from airflow import DAG
 from pendulum import yesterday
 from airflow.operators.python_operator import PythonOperator
