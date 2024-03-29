@@ -55,6 +55,7 @@ def get_bike_station():
         station_no.append(test_list[0])
 
     res_df['station_no'] = station_no
+    res_df = res_df[res_df['station_no'].isin(stations)]
     res_df.drop(columns=["stationId"])
     return res_df
 
