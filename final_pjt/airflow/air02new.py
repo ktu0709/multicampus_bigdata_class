@@ -31,6 +31,7 @@ def get_weather():
 def get_bike_station():
     startpage = ['1','1000','2000']
     endpage  = ['999','1999','2999']
+    stations = ['1124', '1153', '1158', '1160', '1166', '2701', '2715', '2721', '2728', '3798']
     now_time = datetime.now().strftime('%Y%m%d_%H%M')
     res_df = pd.DataFrame()
 
