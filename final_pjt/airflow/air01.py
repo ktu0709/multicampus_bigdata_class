@@ -24,7 +24,7 @@ def fetch_json_and_convert_to_csv():
         headers_written = False  # 헤더를 한 번만 쓰기 위한 변수
 
         for i in range(0, 24):
-                api_url =f"http://openapi.seoul.go.kr:8088/664c747774656f6e3130384667614e49/json/tbCycleRentUseTimeInfo/1/999/{date}/{i}"
+                api_url =f"http://openapi.seoul.go.kr:8088/key/json/tbCycleRentUseTimeInfo/1/999/{date}/{i}"
                 response = requests.get(api_url)
                 res = response.json()
                 if(_is_json_key(res,'cycleRentUseTimeInfo') == True):
