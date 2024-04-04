@@ -17,7 +17,7 @@ def fetch_and_save_data():
                             headers_written = False  # 헤더를 한 번만 쓰기 위한 변수
 
                             for x,y in zip(startpage,endpage):
-                              api_url ="http://openapi.seoul.go.kr:8088/664c747774656f6e3130384667614e49/json/bikeList/"+x+"/"+y+"/"
+                              api_url ="http://openapi.seoul.go.kr:8088/key/json/bikeList/"+x+"/"+y+"/"
                               response = requests.get(api_url)
                               data = response.json()
                               bike_info = data['rentBikeStatus']['row']
