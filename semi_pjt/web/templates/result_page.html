@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result page</title>
+</head>
+<body>
+<h2>{{ message }}</h2>
+
+{% load static %}
+{% if is_ok == 1 %}
+    <!--<h3>추천 할수있는 교육과정이 없어요😰<h3> -->
+{% else %}
+<h3>이런 교육과정을 추천해드려요😀</h3>
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="table-dark">
+            <th>번호</th>
+            <th>과정명</th>
+            <!-- <th>작성일시</th> -->
+        </tr>
+        </thead>
+        <tbody>
+        {% for rec in recommendation %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ rec }}</td>
+            <!-- <td>{{ question.create_date }}</td> -->
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+<!--
+<div>
+    <ul>
+{% for rec in recommendation %}
+<li>{{ rec }}</li>
+{% endfor %}
+    </ul>
+</div>
+-->
+
+</body>
+</html>

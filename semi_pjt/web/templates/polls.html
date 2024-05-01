@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>내 스펙 입력하고 합격할 수 있는지 확인해봐요!</h1>
+<div>
+
+    <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">예측하기</button>
+
+</form>
+</div>
+
+
+</body>
+</html>
