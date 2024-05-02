@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- leaflet 라이브러리 불러오기 -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
+
+<style>
+      body {
+        text-align: center;
+        margin: 0 auto;
+        font-family: "Nanum Gothic", "sans-serif" !important;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        background-color: white;
+      }
+
+      .navbar {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        font-size: 1.5rem;
+      }
+
+      .card {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .card-title {
+        font-weight: 700;
+      }
+
+      .card-footer {
+        background-color: transparent;
+        border-top: none;
+      }
+
+      .btn-primary {
+        background-color: #343a40;
+        border-color: #343a40;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .btn-primary:hover {
+        background-color: #212529;
+        border-color: #212529;
+      }
+
+      footer {
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+
+
+    .bubble {
+        position: relative;
+        background: #FFFFFF;
+        color: #000000;
+        font-family: Gothic;
+        font-size: 16px;
+        line-height: 30px;
+        text-align: center;
+        width: 55px;
+        height: 30px;
+        border-radius: 10px;
+        padding: 0px;
+        border: 4px solid #000000;
+    }
+    .bubble:after {
+        content: '';
+        position: absolute;
+        display: white;
+        width: 0;
+        z-index: 1;
+        border-style: solid;
+        border-color: #ffffff transparent;
+        border-width: 15px 15px 0;
+        bottom: -15px;
+        left: 12%;
+        margin-left: 0px;
+        border: 4px solid #000000;
+    }
+
+     .predbubble {
+        position: relative;
+        background: #B9E0FD;
+        color: #000000;
+        font-family: Gothic;
+        font-size: 16px;
+        line-height: 30px;
+        text-align: center;
+        width: 55px;
+        height: 30px;
+        border-radius: 10px;
+        padding: 0px;
+    }
+    .predbubble:after {
+        content: '';
+        position: absolute;
+        display: white;
+        width: 0;
+        z-index: 1;
+        border-style: solid;
+        border-color: #B9E0FD transparent;
+        border-width: 15px 15px 0;
+        bottom: -15px;
+        left: 12%;
+        margin-left: 0px;
+    }
+
+     .expredbubble {
+        position: relative;
+        background: #EB7EA7;
+        color: #000000;
+        font-family: Gothic;
+        font-size: 16px;
+        line-height: 30px;
+        text-align: center;
+        width: 55px;
+        height: 30px;
+        border-radius: 10px;
+        padding: 0px;
+    }
+    .expredbubble:after {
+        content: '';
+        position: absolute;
+        display: white;
+        width: 0;
+        z-index: 1;
+        border-style: solid;
+        border-color: #EB7EA7 transparent;
+        border-width: 15px 15px 0;
+        bottom: -15px;
+        left: 12%;
+        margin-left: 0px;
+    }
+
+     .unpredbubble {
+        position: relative;
+        background: #73EEB2;
+        color: #000000;
+        font-family: Gothic;
+        font-size: 16px;
+        line-height: 30px;
+        text-align: center;
+        width: 55px;
+        height: 30px;
+        border-radius: 10px;
+        padding: 0px;
+    }
+    .unpredbubble:after {
+        content: '';
+        position: absolute;
+        display: white;
+        width: 0;
+        z-index: 1;
+        border-style: solid;
+        border-color: #73EEB2 transparent;
+        border-width: 15px 15px 0;
+        bottom: -15px;
+        left: 12%;
+        margin-left: 0px;
+    }
+
+</style>
+
+    <title>Map</title>
+
+
+
+</head>
+<style>
+  body {
+    text-align: center;
+    margin: 0 auto;
+    font-family: "Nanum Gothic", "sans-serif" !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+  }
+</style>
+<body>
+        <!-- Responsive navbar-->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container px-5">
+        <a class="navbar-brand" href="#!">따릉이타조</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="index/"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item"><a class="nav-link" href="login/">Login</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="register/">Register</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-right text-white" aria-current="page" href="qna/">Q&A</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+        <div id="map" style="height: 900px;"> </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+
+//37.555723 , 126.826708    -> 37.56580353	126.8280792
+
+
+      // leaflet.js
+      var map = L.map('map').setView([37.5560, 126.8400], 15);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // 마커들을 담을 배열
+        var markers = [];
+
+        //과대
+        var x_list1 = [37.5628,37.5628,37.56320572];
+        var y_list1 = [126.845,126.8419,126.8393631];
+
+        //과소
+        var x_list2 = [37.5583,37.558568,37.55894852];
+        var y_list2 = [126.8428,126.840046,126.8371735];
+
+function Simulation(x, y) {
+    for (var i = 0; i < x.length; i++) {
+        (function(index) {
+            setTimeout(function() {
+                var routingControl = L.Routing.control({
+                    waypoints: [
+                        L.latLng(x[index], y[index]),
+                        L.latLng(x[x.length - 1], y[x.length - 1])
+                    ]
+                }).addTo(map);
+            }, 5000 * index); // 각 루프 단계마다 5초씩 대기
+        })(i);
+    }
+}
+
+
+        function updatePredMarkers(data) {
+            // 이전에 생성된 마커들을 제거합니다.
+            for (var i = 0; i < markers.length; i++) {
+                map.removeLayer(markers[i]);
+            }
+            // 새로운 데이터를 기반으로 새로운 마커를 생성합니다.
+            for (var i = 0; i < data.length; i++) {
+
+               var rate_num = parseFloat(data[i].bike_rate);
+             if(rate_num > 1.1){
+              var customIcon = L.divIcon({
+                className: 'custom-icon',
+                 html: '<div class="expredbubble">'+data[i].pred_cnt+'/'+data[i].tot_cnt+'</div>',
+                iconSize: [30, 30],
+                iconAnchor: [15, 15]
+                });
+               }
+
+              else if (rate_num < 0.9){
+              var customIcon = L.divIcon({
+                className: 'custom-icon',
+                 html: '<div class="unpredbubble">'+data[i].pred_cnt+'/'+data[i].tot_cnt+'</div>',
+                iconSize: [30, 30],
+                iconAnchor: [15, 15]
+                });
+               }
+
+              else{
+              var customIcon = L.divIcon({
+                className: 'custom-icon',
+                 html: '<div class="predbubble">'+data[i].pred_cnt+'/'+data[i].tot_cnt+'</div>',
+                iconSize: [30, 30],
+                iconAnchor: [15, 15]
+                });
+              }
+
+                var marker = L.marker([data[i].lat, data[i].long] ,{ icon: customIcon }).addTo(map);
+                marker.bindPopup(data[i].stationNm + ' - ' + data[i].pred_cnt + '대');
+                markers.push(marker);
+
+
+              //마커 클릭 시 리스너
+              if(rate_num > 1.1){
+              marker.on('click', function(e) {
+                var confirmed = confirm("해당 대여소에서 대여하시고 리워드 적립받으시겠습니까?"); // confirm 창 표시
+                if (confirmed) {
+                    Simulation(x_list1,y_list1);
+                }
+
+                if(confirmed){
+                setTimeout(() => {
+                        alert("리워드 적립이 완료되었습니다");
+                        console.log("Delayed for 10 second.");
+                    }, "10000");
+
+                }
+
+
+            });
+            }
+
+            else if (rate_num < 0.9){
+             marker.on('click', function(e) {
+                var confirmed = confirm("해당 대여소에 반납하시고 리워드 적립받으시겠습니까?"); // confirm 창 표시
+                if (confirmed) {
+                    Simulation(x_list2,y_list2);
+                }
+
+                if(confirmed){
+                setTimeout(() => {
+                        alert("리워드 적립이 완료되었습니다");
+                        console.log("Delayed for 10 second.");
+                    }, "10000");
+
+                }
+
+            });
+            }
+
+
+            }
+        }
+
+
+        //L.Routing.control({
+        //    waypoints: [
+        //       L.latLng(37.555723, 126.826708),
+        //        L.latLng(37.56103516, 126.8548126)
+        //    ]
+        //}).addTo(map);
+
+
+        function update_marker() {
+            $.ajax({
+                url: '/update_marker/',
+                type: 'GET',
+                success: function(data) {
+                    // 반환된 JSON 데이터를 처리합니다.
+                    console.log(data);
+                    // 맵의 마커를 업데이트합니다.
+                    updateMarkers(data['markers_data']);
+                }
+            });
+        }
+
+        function get_gruModel() {
+            $.ajax({
+                url: '/render_json/',
+                type: 'GET',
+                success: function(data) {
+                    updatePredMarkers(data['pred_list']);
+                }
+            });
+        }
+
+
+
+        // 초기에 한번 호출하고, 이후 10초마다 호출합니다.
+        //update_marker();
+        //setInterval(update_marker, 10000);
+
+        get_gruModel();
+        setInterval(update_marker, 90901000);
+</script>
+
+
+
+
+
+    <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; 따릉이타조 2024</p></div>
+        </footer>
+</body>
+</html>
